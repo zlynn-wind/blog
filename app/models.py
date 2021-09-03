@@ -165,11 +165,28 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer)
     nickname = db.Column(db.String(64))
-    text = db.Column(db.Text)
+    content = db.Column(db.Text)
 
     def __init__(self, id=None,
-                 nickname=None, text=None):
+                 post_id=None, nickname=None,
+                 content=None):
         self.id = id
+        self.post_id = post_id
         self.nickname = nickname
-        self.text = text
+        self.content = content
+
+    @classmethod
+    def create(cls, nickname=None,
+               post_id=None, content=None,
+               _commit=True):
+        obj = cls(
+            nickname=nickname,
+            post_id=post_id,
+            content=content
+        )
+        db.session.add(obj)
+        if _commit is True:
+            db.session.commit()
+        return obj
