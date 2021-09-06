@@ -190,3 +190,11 @@ class Comment(db.Model):
         if _commit is True:
             db.session.commit()
         return obj
+
+    @classmethod
+    def list_comment(cls, post_id):
+        return cls.query.filter_by(post_id=post_id).all()
+    
+    @classmethod
+    def comment_count(cls, post_id):
+        return cls.query.filter_by(post_id=post_id).count()
