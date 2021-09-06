@@ -6,10 +6,10 @@ from Post.form import PostForm
 
 
 @post.route('/add_post', methods=['POST'])
-def add_comment():
+def add_post():
     form = PostForm()
     if form.validate_on_submit():
         text = form.content.data
         Post.create(text)
-        flash("add comment success")
+        flash("add post success")
     return render_template('content.html', form=form)
