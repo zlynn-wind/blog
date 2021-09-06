@@ -1,6 +1,4 @@
-from flask import render_template, redirect, request, url_for, flash, jsonify
-from flask.globals import current_app
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import render_template, flash, jsonify
 
 from app.models import Comment
 from comment.init import comment
