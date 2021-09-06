@@ -160,6 +160,15 @@ class Post(db.Model):
         self.user_id = user_id
         self.text = text
 
+    @classmethod
+    def create(cls, text=None, _commit=True):
+        obj = cls(text=text)
+        db.session.add(obj)
+        if _commit is True:
+            db.session.commit()
+        return obj
+
+
 
 class Comment(db.Model):
     __tablename__ = 'comments'
